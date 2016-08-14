@@ -1,5 +1,21 @@
 {% extends "base.html" %}
 
+{%+ block extra_title %}
+ - {{ article.title }}
+{% endblock %}
+
+{% block meta_description %}
+{% if article.description %}
+<meta name="description" content="{{article.description | e}}" />
+{% endif %}
+{% endblock %}
+
+{% block meta_other %}
+{% if article.status == 'draft' %}
+<meta name="robots" content="noindex" />
+{% else %}{% endif %}
+{% endblock %}
+
 {% block content %}
 <div class="post">
 	<h1 class="post-title">{{ article.title }}</h1>
